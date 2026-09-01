@@ -44,7 +44,8 @@ return {
 					},
 
 					filtered_items = {
-						hide_dotfiles = false,
+						visible = false,
+						hide_dotfiles = true,
 						hide_gitignored = false,
 					},
 				},
@@ -53,8 +54,9 @@ return {
 					width = 30,
 				},
 			})
-
+            
 			vim.keymap.set("n", "<C-n>", "<cmd>Neotree toggle<CR>", { desc = "Toggle file explorer" })
+			vim.keymap.set("n", "<leader>e", "<cmd>Neotree focus<CR>", { desc = "Focus file explorer" })
 		end,
 	},
 }

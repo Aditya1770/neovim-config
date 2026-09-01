@@ -13,22 +13,36 @@ map("n", "]d", vim.diagnostic.goto_next)
 map("n", "<leader>d", vim.diagnostic.open_float)
 
 vim.keymap.set("n", "<leader>r", function()
-    vim.cmd("write")
+	vim.cmd("write")
 
-    local ft = vim.bo.filetype
+	local ft = vim.bo.filetype
 
-    if ft == "cpp" then
-        vim.cmd("split | terminal g++ % -std=c++17 -O2 -o %:r && ./%:r")
-    elseif ft == "c" then
-        vim.cmd("split | terminal gcc % -o %:r && ./%:r")
-    elseif ft == "python" then
-        vim.cmd("split | terminal python %")
-    elseif ft == "java" then
-        vim.cmd("split | terminal javac % && java %:r")
-    end
+	if ft == "cpp" then
+		vim.cmd("split | terminal g++ % -std=c++17 -O2 -o %:r && ./%:r")
+	elseif ft == "c" then
+		vim.cmd("split | terminal gcc % -o %:r && ./%:r")
+	elseif ft == "python" then
+		vim.cmd("split | terminal python %")
+	elseif ft == "java" then
+		vim.cmd("split | terminal javac % && java %:r")
+	end
 end)
 
 vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>")
 vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>")
 
 vim.keymap.set("n", "<leader>x", "<cmd>bdelete<CR>")
+
+-- Buffer navigation
+vim.keymap.set("n", "<C-Tab>", "<cmd>BufferLineCycleNext<CR>", {
+	desc = "Next buffer",
+})
+
+vim.keymap.set("n", "<C-S-Tab>", "<cmd>BufferLineCyclePrev<CR>", {
+	desc = "Previous buffer",
+})
+
+-- Close current buffer
+vim.keymap.set("n", "<leader>x", "<cmd>bdelete<CR>", {
+	desc = "Close buffer",
+})

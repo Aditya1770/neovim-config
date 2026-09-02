@@ -27,3 +27,16 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.g.mapleader = " "
+
+vim.api.nvim_create_autocmd("CursorHold", {
+	callback = function()
+		vim.diagnostic.open_float(nil, {
+			focus = false,
+			scope = "cursor",
+			border = "rounded",
+			source = true,
+		})
+	end,
+})
+
+vim.opt.updatetime = 500

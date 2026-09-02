@@ -106,10 +106,21 @@ return {
 		},
 
 		config = function()
+			local function running_file()
+				if vim.g.running_file then
+					return "󰑮 " .. vim.g.running_file
+				end
+
+				return ""
+			end
 			require("lualine").setup({
 				options = {
-					theme = "auto",
+					theme = "everblush",
 					globalstatus = true,
+					component_separators = {
+						left = "",
+						right = "",
+					},
 				},
 			})
 		end,

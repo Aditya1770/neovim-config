@@ -40,3 +40,19 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 vim.opt.updatetime = 500
+
+-- Move line down
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
+vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==")
+
+-- Move line up
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
+vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==")
+
+-- Move selected lines down
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv")
+
+-- Move selected lines up
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv")

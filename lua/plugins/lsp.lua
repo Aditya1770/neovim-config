@@ -6,7 +6,7 @@ return {
 			vim.lsp.enable({
 				"clangd",
 				"jdtls",
-				"basedpyright",
+				"pyright",
 			})
 
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {

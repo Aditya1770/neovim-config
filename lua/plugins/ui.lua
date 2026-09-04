@@ -1,104 +1,4 @@
 return {
-
-	{
-		"Everblush/nvim",
-		name = "everblush",
-		priority = 1000,
-
-		config = function()
-			require("everblush").setup({
-				transparent_background = false,
-
-				nvim_tree = {
-					contrast = true,
-				},
-			})
-
-			vim.cmd("colorscheme everblush")
-
-			local bg = "#0A1114"
-			local separator = "#1c2529"
-
-			vim.api.nvim_set_hl(0, "LineNr", {
-				fg = "#263438",
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "LineNrAbove", {
-				fg = "#2b3438",
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "LineNrBelow", {
-				fg = "#2b3438",
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "CursorLine", {
-				bg = "#141b1e",
-			})
-
-			vim.api.nvim_set_hl(0, "CursorLineNr", {
-				fg = "#6c7a7d",
-				bg = bg,
-				bold = true,
-			})
-
-			vim.api.nvim_set_hl(0, "SignColumn", {
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "FoldColumn", {
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "Normal", {
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "NormalNC", {
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "SignColumn", {
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "EndOfBuffer", {
-				fg = bg,
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "WinSeparator", {
-				fg = separator,
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "VertSplit", {
-				fg = separator,
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeNormal", {
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeNormalNC", {
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", {
-				fg = bg,
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", {
-				fg = separator,
-				bg = bg,
-			})
-		end,
-	},
-
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
@@ -115,7 +15,7 @@ return {
 			end
 			require("lualine").setup({
 				options = {
-					theme = "everblush",
+					theme = "auto",
 					globalstatus = true,
 					component_separators = {
 						left = "",
@@ -173,6 +73,23 @@ return {
 				separator_style = "thin",
 				show_buffer_close_icons = true,
 				show_close_icon = false,
+			},
+
+			highlights = {
+				buffer_selected = {
+					bold = false,
+					italic = false,
+				},
+
+				buffer_visible = {
+					bold = false,
+					italic = false,
+				},
+
+				buffer = {
+					bold = false,
+					italic = false,
+				},
 			},
 		},
 	},

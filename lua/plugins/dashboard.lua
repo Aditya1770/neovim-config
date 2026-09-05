@@ -47,7 +47,7 @@ return {
 
 			dashboard.section.buttons.opts.hl = "AlphaButtons"
 
-			dashboard.section.footer.val = "code • compile • suffer • repeat"
+			dashboard.section.footer.val = "think fast chucklenuts"
 
 			dashboard.section.footer.opts.hl = "AlphaFooter"
 

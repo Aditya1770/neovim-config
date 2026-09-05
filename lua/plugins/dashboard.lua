@@ -31,10 +31,6 @@ return {
 			dashboard.section.header.val = hydra
 			dashboard.section.header.opts.hl = "AlphaHeader"
 
-			vim.api.nvim_set_hl(0, "AlphaHeader", {
-				fg = "#67b0e8",
-			})
-
 			dashboard.section.buttons.val = {
 				dashboard.button("f", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
 

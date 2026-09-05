@@ -70,62 +70,6 @@ return {
 				},
 			})
 
-			local bg = "#0A1114"
-
-			vim.api.nvim_set_hl(0, "NeoTreeNormal", {
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeNormalNC", {
-				bg = bg,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeRootName", {
-				fg = "#8c9fa3",
-				bg = bg,
-				bold = false,
-				italic = false,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", {
-				fg = "#719fdd",
-				bold = false,
-				italic = false,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", {
-				fg = "#719fdd",
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeFileName", {
-				fg = "#c8d1d3",
-				bold = false,
-				italic = false,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", {
-				fg = "#c8d1d3",
-				bold = false,
-				italic = false,
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeIndentMarker", {
-				fg = "#263438",
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeExpander", {
-				fg = "#61777d",
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeCursorLine", {
-				bg = "#141b1e",
-			})
-
-			vim.api.nvim_set_hl(0, "NeoTreeDimText", {
-				fg = "#4b595d",
-				italic = true,
-			})
-
 			vim.keymap.set("n", "<C-n>", "<cmd>Neotree toggle<CR>", { desc = "Toggle file explorer" })
 			vim.keymap.set("n", "<leader>e", "<cmd>Neotree focus<CR>", { desc = "Focus file explorer" })
 		end,

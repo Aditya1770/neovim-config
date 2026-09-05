@@ -1,17 +1,15 @@
 local map = vim.keymap.set
 
--- LSP
-map("n", "gd", vim.lsp.buf.definition)
-map("n", "gr", vim.lsp.buf.references)
-map("n", "K", vim.lsp.buf.hover)
+-- Move lines
+for _, key in ipairs({ "<A-j>", "<A-Down>" }) do
+	map("n", key, ":m .+1<CR>==")
+	map("v", key, ":m '>+1<CR>gv=gv")
+end
 
-map("n", "<leader>rn", vim.lsp.buf.rename)
-map("n", "<leader>ca", vim.lsp.buf.code_action)
-
-map("n", "[d", vim.diagnostic.goto_prev)
-map("n", "]d", vim.diagnostic.goto_next)
-
-map("n", "<leader>d", vim.diagnostic.open_float)
+for _, key in ipairs({ "<A-k>", "<A-Up>" }) do
+	map("n", key, ":m .-2<CR>==")
+	map("v", key, ":m '<-2<CR>gv=gv")
+end
 
 local run_win = nil
 local run_buf = nil

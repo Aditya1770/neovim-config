@@ -1,82 +1,61 @@
 local hydra = {
-    "                                   ",
-    "                                   ",
-    "                                   ",
-    "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
-    "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
-    "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
-    "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
-    "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
-    "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
-    "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
-    " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
-    " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
-    "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
-    "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
-    "                                   ",
+	"                                   ",
+	"                                   ",
+	"                                   ",
+	"   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
+	"    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
+	"          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
+	"           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
+	"          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
+	"   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
+	"  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
+	" ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
+	" ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
+	"      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
+	"       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
+	"                                   ",
 }
 
 return {
-    {
-        "goolord/alpha-nvim",
+	{
+		"goolord/alpha-nvim",
 
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
 
-        config = function()
-            local alpha = require("alpha")
-            local dashboard = require("alpha.themes.dashboard")
+		config = function()
+			local alpha = require("alpha")
+			local dashboard = require("alpha.themes.dashboard")
 
-            dashboard.section.header.val = hydra
-            dashboard.section.header.opts.hl = "AlphaHeader"
+			dashboard.section.header.val = hydra
+			dashboard.section.header.opts.hl = "AlphaHeader"
 
-            dashboard.section.buttons.val = {
-                dashboard.button(
-                    "f",
-                    "󰈞  Find file",
-                    "<cmd>Telescope find_files<CR>"
-                ),
+			vim.api.nvim_set_hl(0, "AlphaHeader", {
+				fg = "#67b0e8",
+			})
 
-                dashboard.button(
-                    "n",
-                    "  New file",
-                    "<cmd>ene<CR>"
-                ),
+			dashboard.section.buttons.val = {
+				dashboard.button("f", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
 
-                dashboard.button(
-                    "g",
-                    "󰱼  Find text",
-                    "<cmd>Telescope live_grep<CR>"
-                ),
+				dashboard.button("n", "  New file", "<cmd>ene<CR>"),
 
-                dashboard.button(
-                    "r",
-                    "󰄉  Recent files",
-                    "<cmd>Telescope oldfiles<CR>"
-                ),
+				dashboard.button("g", "󰱼  Find text", "<cmd>Telescope live_grep<CR>"),
 
-                dashboard.button(
-                    "c",
-                    "  Configuration",
-                    "<cmd>e ~/.config/nvim/init.lua<CR>"
-                ),
+				dashboard.button("r", "󰄉  Recent files", "<cmd>Telescope oldfiles<CR>"),
 
-                dashboard.button(
-                    "q",
-                    "󰅚  Quit",
-                    "<cmd>qa<CR>"
-                ),
-            }
+				dashboard.button("c", "  Configuration", "<cmd>e ~/.config/nvim/init.lua<CR>"),
 
-            dashboard.section.buttons.opts.hl = "AlphaButtons"
+				dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),
+			}
 
-            dashboard.section.footer.val =
-                "code • compile • suffer • repeat"
+			dashboard.section.buttons.opts.hl = "AlphaButtons"
 
-            dashboard.section.footer.opts.hl = "AlphaFooter"
+			dashboard.section.footer.val = "code • compile • suffer • repeat"
 
-            alpha.setup(dashboard.config)
-        end,
-    },
+			dashboard.section.footer.opts.hl = "AlphaFooter"
+
+			alpha.setup(dashboard.config)
+		end,
+	},
 }

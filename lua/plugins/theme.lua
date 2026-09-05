@@ -37,7 +37,7 @@ return {
 			})
 
 			vim.api.nvim_set_hl(0, "CursorLineNr", {
-				fg = "#6c7a7d",
+				fg = "#b3b9b8",
 				bg = bg,
 				bold = true,
 			})
@@ -267,6 +267,47 @@ return {
 
 			vim.api.nvim_set_hl(0, "BlinkCmpDocCursorLine", {
 				bg = bg_sel,
+			})
+
+			vim.api.nvim_set_hl(0, "BufferLineBackground", {
+				fg = "#657378",
+				bg = "#141b1e",
+			})
+
+			vim.api.nvim_set_hl(0, "BufferLineBufferVisible", {
+				fg = "#829095",
+				bg = "#141b1e",
+			})
+
+			vim.api.nvim_set_hl(0, "BufferLineBufferSelected", {
+				fg = "#dadada",
+				bg = "#0A1114",
+				bold = false,
+				italic = false,
+			})
+
+			vim.api.nvim_set_hl(0, "BufferLineFill", {
+				bg = "#141b1e",
+			})
+
+			vim.api.nvim_set_hl(0, "BufferLineCloseButton", {
+                fg = "#232a2d",
+				bg = "#141b1e",
+			})
+
+			vim.api.nvim_set_hl(0, "BufferLineSeparator", {
+                fg = "#141b1e",
+				bg = "#141b1e",
+			})
+
+			vim.api.nvim_set_hl(0, "BufferLineCloseButtonSelected", {
+                fg = "#232a2d",
+				bg = "#0A1114",
+			})
+
+			vim.api.nvim_set_hl(0, "BufferLineCloseButtonVisible", {
+                fg = "#141b1e",
+				bg = "#0A1114",
 			})
 		end,
 	},

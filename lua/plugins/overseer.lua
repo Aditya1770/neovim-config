@@ -101,7 +101,7 @@ return {
 	"stevearc/overseer.nvim",
 	cmd = { "OverseerRun", "OverseerToggle", "OverseerTaskAction" },
 	keys = {
-		{ "<leader>r", run_current_file, desc = "Run current file" },
+		{ "<C-CR>", run_current_file, desc = "Run current file" },
 		{ "<leader>ro", open_last_output, desc = "Open runner output" },
 		{ "<leader>rs", stop_last_task, desc = "Stop runner" },
 	},

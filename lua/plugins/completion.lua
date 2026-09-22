@@ -12,6 +12,16 @@ return {
 					"fallback",
 				},
 
+				["<Tab>"] = {
+					"select_next",
+					"fallback",
+				},
+
+				["<S-Tab>"] = {
+					"select_prev",
+					"fallback",
+				},
+
 				["<Up>"] = {
 					"select_prev",
 					"fallback",
@@ -51,29 +61,6 @@ return {
 			},
 
 			completion = {
-				menu = {
-					border = "single",
-
-					draw = {
-						padding = 1,
-						gap = 1,
-
-						columns = {
-							{
-								"label",
-								"label_description",
-								gap = 1,
-							},
-
-							{
-								"kind_icon",
-								"kind",
-								gap = 1,
-							},
-						},
-					},
-				},
-
 				documentation = {
 					auto_show = true,
 					auto_show_delay_ms = 250,

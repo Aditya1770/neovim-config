@@ -7,6 +7,9 @@ return {
 				"clangd",
 				"jdtls",
 				"pyright",
+				"stylua",
+				"gopls",
+				"biome",
 			})
 
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {

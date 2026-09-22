@@ -5,6 +5,11 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 
+	config = function(_, opts)
+		require("bufferline").setup(opts)
+		vim.schedule(require("config.highlights").apply_bufferline)
+	end,
+
 	opts = function()
 		return {
 			options = {

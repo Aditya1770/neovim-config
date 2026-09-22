@@ -10,10 +10,8 @@ return {
 				names = false,
 				RRGGBBAA = true,
 				AARRGGBB = true,
-
 				css = true,
 				css_fn = true,
-
 				mode = "virtualtext",
 				virtualtext = " ",
 			},

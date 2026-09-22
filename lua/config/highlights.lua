@@ -55,10 +55,15 @@ function M.apply()
 	set("AlphaHeader", { fg = c.blue })
 	set("IblIndent", { fg = "#182326" })
 	set("IblScope", { fg = "#243236" })
+	set("WhichKeyNormal", { bg = c.panel })
 
 	set("BlinkCmpMenu", { bg = c.completion_bg, fg = c.fg })
 	set("BlinkCmpMenuBorder", { bg = c.completion_bg, fg = c.border })
-	set("BlinkCmpMenuSelection", { bg = c.completion_selected, fg = c.fg, bold = false })
+	set("BlinkCmpMenuSelection", {
+		bg = c.completion_selected,
+		fg = c.completion_bg,
+		bold = false,
+	})
 	set("BlinkCmpLabel", { fg = c.fg })
 	set("BlinkCmpLabelDeprecated", { fg = c.muted, strikethrough = true })
 	set("BlinkCmpLabelMatch", { fg = c.blue, bold = true })
@@ -101,6 +106,10 @@ function M.apply()
 	set("BlinkCmpDocBorder", { bg = c.completion_bg, fg = c.border })
 	set("BlinkCmpDocSeparator", { bg = c.completion_bg, fg = c.border })
 	set("BlinkCmpDocCursorLine", { bg = c.panel })
+
+	if package.loaded.bufferline and M.apply_bufferline then
+		vim.schedule(M.apply_bufferline)
+	end
 end
 
 function M.setup()
@@ -109,18 +118,6 @@ function M.setup()
 		group = vim.api.nvim_create_augroup("theme_overrides", { clear = true }),
 		callback = M.apply,
 	})
-end
-
-function M.lualine_theme()
-	local theme = require("lualine.themes.auto")
-
-	for _, mode in pairs(theme) do
-		if type(mode) == "table" and mode.c then
-			mode.c.bg = M.colors.panel
-		end
-	end
-
-	return theme
 end
 
 function M.bufferline()
@@ -132,9 +129,28 @@ function M.bufferline()
 		fill = { bg = c.panel },
 		close_button = { fg = "#232a2d", bg = c.panel },
 		close_button_selected = { fg = "#232a2d", bg = c.bg },
-		close_button_visible = { fg = c.panel, bg = c.bg },
+		close_button_visible = { fg = "#232a2d", bg = c.panel },
 		separator = { fg = c.panel, bg = c.panel },
+		separator_selected = { fg = c.panel, bg = c.bg },
+		indicator_selected = { fg = c.green, bg = c.bg },
 	}
+end
+
+function M.apply_bufferline()
+	local inactive_bg = tonumber(M.colors.panel:sub(2), 16)
+	local selected_bg = tonumber(M.colors.bg:sub(2), 16)
+	local highlights = vim.api.nvim_get_hl(0, {})
+
+	for name, value in pairs(highlights) do
+		local is_bufferline = name:match("^BufferLine")
+		local is_buffer_icon = name:match("^DevIcon.*Inactive$") or name:match("^DevIcon.*Selected$")
+
+		if is_bufferline or is_buffer_icon then
+			value.bg = name:match("Selected$") and selected_bg or inactive_bg
+			value.link = nil
+			vim.api.nvim_set_hl(0, name, value)
+		end
+	end
 end
 
 return M

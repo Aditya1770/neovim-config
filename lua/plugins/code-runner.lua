@@ -4,7 +4,25 @@ return {
 		cmd = { "RunCode", "RunFile", "RunProject", "RunClose", "CRFiletype", "CRProjects" },
 
 		keys = {
-			{ "<leader>r", "<cmd>update<CR><cmd>RunCode<CR>", desc = "Run code" },
+			{
+				"<leader>r",
+				function()
+					vim.cmd.update()
+
+					local extension = vim.fn.expand("%:e")
+					if vim.bo.filetype == "gomod" or extension == "mod" then
+						vim.notify(
+							"This is a Go module file. Save executable code as a .go file (for example main.go).",
+							vim.log.levels.ERROR,
+							{ title = "Code runner" }
+						)
+						return
+					end
+
+					vim.cmd.RunFile()
+				end,
+				desc = "Run current file",
+			},
 		},
 
 		config = function()
@@ -20,28 +38,28 @@ return {
 
 				filetype = {
 					cpp = {
-						"cd $dir &&",
-						"g++ $fileName -std=c++17 -O2 -o $fileNameWithoutExt &&",
-						"./$fileNameWithoutExt",
+						'cd "$dir" &&',
+						'g++ "$fileName" -std=c++17 -O2 -Wall -Wextra -o "$fileNameWithoutExt" &&',
+						'./"$fileNameWithoutExt"',
 					},
 
 					c = {
-						"cd $dir &&",
-						"gcc $fileName -o $fileNameWithoutExt &&",
-						"./$fileNameWithoutExt",
+						'cd "$dir" &&',
+						'gcc "$fileName" -Wall -Wextra -o "$fileNameWithoutExt" &&',
+						'./"$fileNameWithoutExt"',
 					},
 
-					python = "python $fileName",
+					python = 'cd "$dir" && python "$fileName"',
 
-					lua = "lua $fileName",
+					lua = 'cd "$dir" && lua "$fileName"',
 
 					java = {
-						"cd $dir &&",
-						"javac $fileName &&",
-						"java $fileNameWithoutExt",
+						'cd "$dir" &&',
+						'javac "$fileName" &&',
+						'java "$fileNameWithoutExt"',
 					},
 
-					go = "go run $fileName",
+					go = 'cd "$dir" && go run "$fileName"',
 				},
 			})
 		end,

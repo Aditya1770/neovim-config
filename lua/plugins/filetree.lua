@@ -2,6 +2,11 @@ return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
+		cmd = "Neotree",
+		keys = {
+			{ "<C-n>", "<cmd>Neotree toggle<CR>", desc = "Toggle file explorer" },
+			{ "<leader>e", "<cmd>Neotree focus<CR>", desc = "Focus file explorer" },
+		},
 
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -69,9 +74,6 @@ return {
 					width = 27,
 				},
 			})
-
-			vim.keymap.set("n", "<C-n>", "<cmd>Neotree toggle<CR>", { desc = "Toggle file explorer" })
-			vim.keymap.set("n", "<leader>e", "<cmd>Neotree focus<CR>", { desc = "Focus file explorer" })
 		end,
 	},
 }

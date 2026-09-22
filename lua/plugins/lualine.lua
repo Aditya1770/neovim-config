@@ -1,13 +1,14 @@
+local palette = require("config.palette")
 local colors = {
-	bg = "#141b1e",
-	section = "#20282c",
-	fg = "#c8d1d3",
+	bg = palette.panel,
+	section = palette.section,
+	fg = palette.soft_fg,
 	muted = "#8c9fa3",
-	blue = "#719fdd",
-	green = "#8ccf7e",
-	purple = "#c47fd5",
-	red = "#e57474",
-	yellow = "#e5c76b",
+	blue = palette.accent,
+	green = palette.green,
+	purple = palette.purple,
+	red = palette.red,
+	yellow = palette.yellow,
 }
 
 local theme = {

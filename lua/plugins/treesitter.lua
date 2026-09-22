@@ -12,6 +12,8 @@ return {
                 "lua",
                 "bash",
                 "json",
+				"go",
+				"gomod",
             },
 
             highlight = {

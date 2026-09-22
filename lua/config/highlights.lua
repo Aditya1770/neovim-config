@@ -1,22 +1,6 @@
 local M = {}
 
-M.colors = {
-	bg = "#0A1114",
-	panel = "#141b1e",
-	completion_bg = "#10181b",
-	completion_selected = "#719fdd",
-	border = "#314147",
-	separator = "#1c2529",
-	fg = "#dadada",
-	muted = "#7b8b91",
-	red = "#e57474",
-	green = "#8ccf7e",
-	yellow = "#e5c76b",
-	blue = "#67b0e8",
-	purple = "#c47fd5",
-	cyan = "#6cbfbf",
-	orange = "#e5a46b",
-}
+M.colors = require("config.palette")
 
 local function set(group, opts)
 	vim.api.nvim_set_hl(0, group, opts)
@@ -58,7 +42,7 @@ function M.apply()
 	set("WhichKeyNormal", { bg = c.panel })
 
 	set("BlinkCmpMenu", { bg = c.completion_bg, fg = c.fg })
-	set("BlinkCmpMenuBorder", { bg = c.completion_bg, fg = c.border })
+	set("BlinkCmpMenuBorder", { bg = c.completion_bg, fg = "#263438" })
 	set("BlinkCmpMenuSelection", {
 		bg = c.completion_selected,
 		fg = c.completion_bg,
@@ -68,7 +52,11 @@ function M.apply()
 	set("BlinkCmpLabelDeprecated", { fg = c.muted, strikethrough = true })
 	set("BlinkCmpLabelMatch", { fg = c.blue, bold = true })
 	set("BlinkCmpLabelDescription", { fg = c.muted })
+	set("BlinkCmpLabelDetail", { fg = c.muted })
 	set("BlinkCmpKind", { fg = c.muted })
+	set("BlinkCmpSource", { fg = c.muted })
+	set("BlinkCmpScrollBarThumb", { bg = c.border })
+	set("BlinkCmpScrollBarGutter", { bg = c.completion_bg })
 
 	local kinds = {
 		Text = c.fg,
@@ -106,6 +94,9 @@ function M.apply()
 	set("BlinkCmpDocBorder", { bg = c.completion_bg, fg = c.border })
 	set("BlinkCmpDocSeparator", { bg = c.completion_bg, fg = c.border })
 	set("BlinkCmpDocCursorLine", { bg = c.panel })
+	set("BlinkCmpSignatureHelp", { bg = c.completion_bg, fg = c.fg })
+	set("BlinkCmpSignatureHelpBorder", { bg = c.completion_bg, fg = "#263438" })
+	set("BlinkCmpSignatureHelpActiveParameter", { fg = c.accent, bold = true })
 
 	if package.loaded.bufferline and M.apply_bufferline then
 		vim.schedule(M.apply_bufferline)

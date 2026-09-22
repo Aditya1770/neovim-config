@@ -9,6 +9,7 @@ return {
                 python = { "ruff_format" },
                 java = { "google_java_format" },
                 lua = { "stylua" },
+				go = { "gofmt" },
             },
 
             formatters = {

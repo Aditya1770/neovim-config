@@ -1,13 +1,13 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
 
 		config = function()
 			vim.lsp.enable({
 				"clangd",
 				"jdtls",
 				"pyright",
-				"stylua",
 				"gopls",
 				"biome",
 			})

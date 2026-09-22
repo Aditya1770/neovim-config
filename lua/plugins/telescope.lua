@@ -1,6 +1,13 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
+		cmd = "Telescope",
+		keys = {
+			{ "<leader>sf", desc = "Find files" },
+			{ "<leader>sg", desc = "Search text" },
+			{ "<leader>sb", desc = "Search buffers" },
+			{ "<leader>sh", desc = "Search help" },
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},

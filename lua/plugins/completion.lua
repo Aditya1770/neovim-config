@@ -2,6 +2,7 @@ return {
 	{
 		"saghen/blink.cmp",
 		version = "1.*",
+		event = "InsertEnter",
 
 		opts = {
 			keymap = {
@@ -61,13 +62,40 @@ return {
 			},
 
 			completion = {
+				menu = {
+					border = "single",
+					min_width = 28,
+					max_height = 12,
+					scrollbar = false,
+					winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None,CurSearch:None",
+
+					draw = {
+						padding = { 1, 1 },
+						gap = 1,
+						columns = {
+							{ "kind_icon" },
+							{ "label", "label_description", gap = 1 },
+							{ "kind", gap = 1 },
+						},
+					},
+				},
+
 				documentation = {
 					auto_show = true,
-					auto_show_delay_ms = 250,
+					auto_show_delay_ms = 300,
 
 					window = {
 						border = "single",
+						winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
 					},
+				},
+			},
+
+			signature = {
+				enabled = true,
+				window = {
+					border = "single",
+					winhighlight = "Normal:BlinkCmpSignatureHelp,FloatBorder:BlinkCmpSignatureHelpBorder",
 				},
 			},
 

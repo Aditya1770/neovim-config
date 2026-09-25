@@ -1,4 +1,6 @@
 local M = {}
+local palette_watcher
+local reload_pending = false
 
 M.colors = require("config.palette")
 
@@ -11,11 +13,11 @@ function M.apply()
 
 	set("Normal", { bg = c.bg })
 	set("NormalNC", { bg = c.bg })
-	set("LineNr", { fg = "#263438", bg = c.bg })
-	set("LineNrAbove", { fg = "#2b3438", bg = c.bg })
-	set("LineNrBelow", { fg = "#2b3438", bg = c.bg })
+	set("LineNr", { fg = c.line_nr, bg = c.bg })
+	set("LineNrAbove", { fg = c.line_nr_dim, bg = c.bg })
+	set("LineNrBelow", { fg = c.line_nr_dim, bg = c.bg })
 	set("CursorLine", { bg = c.panel })
-	set("CursorLineNr", { fg = "#b3b9b8", bg = c.bg, bold = true })
+	set("CursorLineNr", { fg = c.cursor_line_nr, bg = c.bg, bold = true })
 	set("SignColumn", { bg = c.bg })
 	set("FoldColumn", { bg = c.bg })
 	set("EndOfBuffer", { fg = c.bg, bg = c.bg })
@@ -26,15 +28,15 @@ function M.apply()
 	set("NeoTreeNormalNC", { bg = c.bg })
 	set("NeoTreeEndOfBuffer", { fg = c.bg, bg = c.bg })
 	set("NeoTreeWinSeparator", { fg = c.separator, bg = c.bg })
-	set("NeoTreeRootName", { fg = "#8c9fa3", bg = c.bg, bold = false, italic = false })
-	set("NeoTreeDirectoryName", { fg = "#719fdd", bold = false, italic = false })
-	set("NeoTreeDirectoryIcon", { fg = "#719fdd" })
-	set("NeoTreeFileName", { fg = "#c8d1d3", bold = false, italic = false })
-	set("NeoTreeFileNameOpened", { fg = "#c8d1d3", bold = false, italic = false })
-	set("NeoTreeIndentMarker", { fg = "#263438" })
-	set("NeoTreeExpander", { fg = "#61777d" })
+	set("NeoTreeRootName", { fg = c.tree_root, bg = c.bg, bold = false, italic = false })
+	set("NeoTreeDirectoryName", { fg = c.tree_directory, bold = false, italic = false })
+	set("NeoTreeDirectoryIcon", { fg = c.tree_directory })
+	set("NeoTreeFileName", { fg = c.tree_file, bold = false, italic = false })
+	set("NeoTreeFileNameOpened", { fg = c.tree_file, bold = false, italic = false })
+	set("NeoTreeIndentMarker", { fg = c.tree_indent })
+	set("NeoTreeExpander", { fg = c.tree_expander })
 	set("NeoTreeCursorLine", { bg = c.panel })
-	set("NeoTreeDimText", { fg = "#4b595d", italic = true })
+	set("NeoTreeDimText", { fg = c.tree_dim, italic = true })
 
 	set("AlphaHeader", { fg = c.blue })
 	set("IblIndent", { fg = "#182326" })
@@ -42,7 +44,7 @@ function M.apply()
 	set("WhichKeyNormal", { bg = c.panel })
 
 	set("BlinkCmpMenu", { bg = c.completion_bg, fg = c.fg })
-	set("BlinkCmpMenuBorder", { bg = c.completion_bg, fg = "#263438" })
+	set("BlinkCmpMenuBorder", { bg = c.completion_bg, fg = c.cmp_border })
 	set("BlinkCmpMenuSelection", {
 		bg = c.completion_selected,
 		fg = c.completion_bg,
@@ -95,7 +97,7 @@ function M.apply()
 	set("BlinkCmpDocSeparator", { bg = c.completion_bg, fg = c.border })
 	set("BlinkCmpDocCursorLine", { bg = c.panel })
 	set("BlinkCmpSignatureHelp", { bg = c.completion_bg, fg = c.fg })
-	set("BlinkCmpSignatureHelpBorder", { bg = c.completion_bg, fg = "#263438" })
+	set("BlinkCmpSignatureHelpBorder", { bg = c.completion_bg, fg = c.cmp_border })
 	set("BlinkCmpSignatureHelpActiveParameter", { fg = c.accent, bold = true })
 
 	if package.loaded.bufferline and M.apply_bufferline then
@@ -109,18 +111,39 @@ function M.setup()
 		group = vim.api.nvim_create_augroup("theme_overrides", { clear = true }),
 		callback = M.apply,
 	})
+
+	-- Fianchetto atomically replaces its generated palette whenever Matugen
+	-- changes. Watch the directory so replacement events are caught reliably.
+	local config_dir = vim.fn.stdpath("config") .. "/lua/config"
+	local uv = vim.uv or vim.loop
+	palette_watcher = uv.new_fs_event()
+	if palette_watcher then
+		palette_watcher:start(config_dir, {}, vim.schedule_wrap(function(error, filename)
+			if error or filename ~= "fianchetto.lua" or reload_pending then
+				return
+			end
+			reload_pending = true
+			vim.defer_fn(function()
+				require("config.palette").reload()
+				M.colors = require("config.palette")
+				M.apply()
+				vim.api.nvim_exec_autocmds("User", { pattern = "FianchettoThemeChanged" })
+				reload_pending = false
+			end, 80)
+		end))
+	end
 end
 
 function M.bufferline()
 	local c = M.colors
 	return {
-		background = { fg = "#657378", bg = c.panel },
-		buffer_visible = { fg = "#829095", bg = c.panel, bold = false, italic = false },
+		background = { fg = c.buffer_muted, bg = c.panel },
+		buffer_visible = { fg = c.buffer_visible, bg = c.panel, bold = false, italic = false },
 		buffer_selected = { fg = c.fg, bg = c.bg, bold = false, italic = false },
 		fill = { bg = c.panel },
-		close_button = { fg = "#232a2d", bg = c.panel },
-		close_button_selected = { fg = "#232a2d", bg = c.bg },
-		close_button_visible = { fg = "#232a2d", bg = c.panel },
+		close_button = { fg = c.buffer_close, bg = c.panel },
+		close_button_selected = { fg = c.buffer_close, bg = c.bg },
+		close_button_visible = { fg = c.buffer_close, bg = c.panel },
 		separator = { fg = c.panel, bg = c.panel },
 		separator_selected = { fg = c.panel, bg = c.bg },
 		indicator_selected = { fg = c.green, bg = c.bg },

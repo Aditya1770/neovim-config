@@ -42,13 +42,13 @@ local function setup_lualine()
 			theme = theme,
 			globalstatus = true,
 			component_separators = "",
-			section_separators = { left = "", right = "" },
+			section_separators = { left = "", right = "" },
 		},
 		sections = {
 			lualine_a = { { "mode", fmt = string.upper } },
 			lualine_b = {
 				{ "filetype", icon_only = true, colored = true, padding = { left = 1, right = 0 } },
-				{ "filename", path = 0, padding = { left = 1, right = 1 } },
+				{ "filename", path = 0, padding = { left = 0, right = 1 } },
 				{ "branch", icon = "" },
 			},
 			lualine_c = {},

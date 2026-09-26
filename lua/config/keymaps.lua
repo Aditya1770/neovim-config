@@ -24,3 +24,8 @@ map("n", "<C-S-Tab>", "<cmd>BufferLineCyclePrev<CR>", {
 map("n", "<leader>x", "<cmd>bdelete<CR>", {
 	desc = "Close buffer",
 })
+
+-- Escape to escape insert in terminal
+map("t", "<Esc>", [[<C-\><C-n>]], {
+    desc = "Terminal normal mode",
+})

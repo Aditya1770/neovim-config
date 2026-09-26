@@ -1,7 +1,5 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
--- Keep the current absolute number aligned with the relative numbers.
--- %C and %s preserve the fold and sign columns used by LSP and gitsigns.
 vim.opt.statuscolumn = "%C%s%=%l "
 
 vim.opt.undofile = true

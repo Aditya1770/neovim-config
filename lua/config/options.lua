@@ -2,6 +2,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.statuscolumn = "%C%s%=%l "
 
+vim.opt.clipboard:append("unnamedplus");
+
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
 
